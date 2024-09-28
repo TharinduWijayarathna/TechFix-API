@@ -1,22 +1,22 @@
 ﻿using TechFixAPI.Model;
-using System.Xml.Linq;
+
 namespace TechFixAPI.Data
 {
-    public class StockRepo
+    public class InventoryRepo
     {
         private AppDBContext _dbContext;
 
-        public StockRepo(AppDBContext dBContext)
+        public InventoryRepo(AppDBContext dBContext)
         {
             _dbContext = dBContext;
         }
-        public bool CreateStock(Stock stock)
+        public bool CreateInventory(Inventory inventory)
         {
             try
             {
-                if (stock != null)
+                if (inventory != null)
                 {
-                    _dbContext.Stocks.Add(stock);
+                    _dbContext.Inventories.Add(inventory);
                     return Save();
                 }
                 else
@@ -43,11 +43,11 @@ namespace TechFixAPI.Data
                 throw ex;
             }
         }
-        public bool UpdateStock(Stock stock)
+        public bool UpdateInventory(Inventory inventory)
         {
             try
             {
-                _dbContext.Stocks.Update(stock);
+                _dbContext.Inventories.Update(inventory);
                 return Save();
             }
             catch (Exception ex)
@@ -56,11 +56,11 @@ namespace TechFixAPI.Data
                 throw ex;
             }
         }
-        public bool DeleteStock(Stock stock)
+        public bool DeleteInventory(Inventory inventory)
         {
             try
             {
-                _dbContext.Stocks.Remove(stock);
+                _dbContext.Inventories.Remove(inventory);
                 return Save();
             }
             catch (Exception ex)
@@ -69,22 +69,22 @@ namespace TechFixAPI.Data
                 throw ex;
             }
         }
-        public IEnumerable<Stock> GetStocks()
+        public IEnumerable<Inventory> GetInventories()
         {
             try
             {
-                return _dbContext.Stocks.ToList();
+                return _dbContext.Inventories.ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Stock? GetStockByID(int id) // Mark as nullable
+        public Inventory? GetInventoryByID(int id) // Mark as nullable
         {
             try
             {
-                return _dbContext.Stocks.FirstOrDefault(stock => stock.Id == id);
+                return _dbContext.Inventories.FirstOrDefault(inventory => inventory.Id == id);
             }
             catch (Exception ex)
             {
@@ -93,3 +93,4 @@ namespace TechFixAPI.Data
         }
     }
 }
+

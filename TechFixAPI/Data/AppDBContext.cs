@@ -10,10 +10,14 @@ namespace TechFixAPI.Data
         }
 
         public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Stock>().Property(p=>p.Price).
+                HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Inventory>().Property(p => p.Price).
                 HasColumnType("decimal(18,2)");
         }
         protected override void OnConfiguring

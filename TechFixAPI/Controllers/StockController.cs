@@ -20,7 +20,7 @@ namespace CompanyAPI.Controllers
             mapper = _mapper;
         }
         [HttpPost]
-        public ActionResult CreateProduct(CreateStockDTO create)
+        public ActionResult CreateStock(CreateStockDTO create)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace CompanyAPI.Controllers
             
         }
         [HttpPut("{id}")]
-        public ActionResult UpdateProduct
+        public ActionResult UpdateStock
             (CreateStockDTO create,int id)
         {
             try
@@ -56,14 +56,14 @@ namespace CompanyAPI.Controllers
 
         }
         [HttpDelete("{id}")]
-        public ActionResult DeleteProduct(int id)
+        public ActionResult DeleteStock(int id)
         {
             try
             {
-                var model = repo.GetProductByID(id);
+                var model = repo.GetStockByID(id);
                 if (model != null)
                 {
-                    repo.DeleteProduct(model);
+                    repo.DeleteStock(model);
                     return Ok();
                 }
                 else
@@ -76,12 +76,12 @@ namespace CompanyAPI.Controllers
 
         }
         [HttpGet]
-        public ActionResult<IEnumerable<ReadStockDTO>> GetProducts()
+        public ActionResult<IEnumerable<ReadStockDTO>> GetStocks()
         {
             try
             {
-                var products = repo.GetProducts();
-                return Ok(mapper.Map<IEnumerable<ReadStockDTO>>(products));
+                var Stocks = repo.GetStocks();
+                return Ok(mapper.Map<IEnumerable<ReadStockDTO>>(Stocks));
             }
             catch (Exception ex)
             {
