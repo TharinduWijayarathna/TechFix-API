@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CompanyAPI.Model;
-namespace CompanyAPI.Data
+using TechFixAPI.Model;
+namespace TechFixAPI.Data
 {
     public class AppDBContext:DbContext
     {
@@ -9,11 +9,11 @@ namespace CompanyAPI.Data
         { 
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().Property(p=>p.Price).
+            modelBuilder.Entity<Stock>().Property(p=>p.Price).
                 HasColumnType("decimal(18,2)");
         }
         protected override void OnConfiguring

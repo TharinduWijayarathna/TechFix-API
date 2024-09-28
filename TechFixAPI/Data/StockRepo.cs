@@ -1,21 +1,22 @@
-﻿using CompanyAPI.Model;
-namespace CompanyAPI.Data
+﻿using TechFixAPI.Model;
+using System.Xml.Linq;
+namespace TechFixAPI.Data
 {
-    public class ProductRepo
+    public class StockRepo
     {
         private AppDBContext _dbContext;
 
-        public ProductRepo(AppDBContext dBContext)
+        public StockRepo(AppDBContext dBContext)
         {
             _dbContext = dBContext;
         }
-        public bool CreateProduct(Product product)
+        public bool CreateStock(Stock stock)
         {
             try
             {
-                if (product != null)
+                if (stock != null)
                 {
-                    _dbContext.Products.Add(product);
+                    _dbContext.Stocks.Add(stock);
                     return Save();
                 }
                 else
@@ -42,11 +43,11 @@ namespace CompanyAPI.Data
                 throw ex;
             }
         }
-        public bool UpdateProduct(Product product)
+        public bool UpdateStock(Stock stock)
         {
             try
             {
-                _dbContext.Products.Update(product);
+                _dbContext.Stocks.Update(stock);
                 return Save();
             }
             catch (Exception ex)
@@ -55,11 +56,11 @@ namespace CompanyAPI.Data
                 throw ex;
             }
         }
-        public bool DeleteProduct(Product product)
+        public bool DeleteProduct(Stock stock)
         {
             try
             {
-                _dbContext.Products.Remove(product);
+                _dbContext.Stocks.Remove(stock);
                 return Save();
             }
             catch (Exception ex)
@@ -68,22 +69,22 @@ namespace CompanyAPI.Data
                 throw ex;
             }
         }
-        public IEnumerable<Product> GetProducts()
+        public IEnumerable<Stock> GetProducts()
         {
             try
             {
-                return _dbContext.Products.ToList();
+                return _dbContext.Stocks.ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Product? GetProductByID(int id) // Mark as nullable
+        public Stock? GetProductByID(int id) // Mark as nullable
         {
             try
             {
-                return _dbContext.Products.FirstOrDefault(product => product.Id == id);
+                return _dbContext.Stocks.FirstOrDefault(product => product.Id == id);
             }
             catch (Exception ex)
             {

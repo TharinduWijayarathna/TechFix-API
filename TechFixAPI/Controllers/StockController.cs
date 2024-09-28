@@ -1,31 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using CompanyAPI.Model;
-using CompanyAPI.DTO;
-using CompanyAPI.Data;
-using CompanyAPI.Profiles;
+using TechFixAPI.Model;
+using TechFixAPI.DTO;
+using TechFixAPI.Data;
+using TechFixAPI.Profiles;
 using AutoMapper;
 
 namespace CompanyAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : Controller
+    public class StockController : Controller
     {
-        private readonly ProductRepo repo;
+        private readonly StockRepo repo;
         private readonly IMapper mapper;
 
-        public ProductController(ProductRepo _repo, IMapper _mapper)
+        public StockController(StockRepo _repo, IMapper _mapper)
         { 
             repo = _repo;
             mapper = _mapper;
         }
         [HttpPost]
-        public ActionResult CreateProduct(CreateProdcutDTO create)
+        public ActionResult CreateProduct(CreateStockDTO create)
         {
             try
             {
-                var model=mapper.Map<Product>(create);
-                if (repo.CreateProduct(model))
+                var model=mapper.Map<Stock>(create);
+                if (repo.CreateStock(model))
                     return Ok();
                 else
                     return BadRequest();
@@ -38,13 +38,13 @@ namespace CompanyAPI.Controllers
         }
         [HttpPut("{id}")]
         public ActionResult UpdateProduct
-            (CreateProdcutDTO create,int id)
+            (CreateStockDTO create,int id)
         {
             try
             {
-                var model = mapper.Map<Product>(create);
+                var model = mapper.Map<Stock>(create);
                 model.Id = id;
-                if (repo.UpdateProduct(model))
+                if (repo.UpdateStock(model))
                     return Ok();
                 else
                     return NotFound();
@@ -76,12 +76,12 @@ namespace CompanyAPI.Controllers
 
         }
         [HttpGet]
-        public ActionResult<IEnumerable<ReadProductDTO>> GetProducts()
+        public ActionResult<IEnumerable<ReadStockDTO>> GetProducts()
         {
             try
             {
                 var products = repo.GetProducts();
-                return Ok(mapper.Map<IEnumerable<ReadProductDTO>>(products));
+                return Ok(mapper.Map<IEnumerable<ReadStockDTO>>(products));
             }
             catch (Exception ex)
             {

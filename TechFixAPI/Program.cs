@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using CompanyAPI.Data;
+using TechFixAPI.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,7 @@ builder.Services.AddDbContext<AppDBContext>
             (options => options.UseSqlServer(conn));
 
 builder.Services.AddControllers();
-builder.Services.AddScoped<ProductRepo>();
+builder.Services.AddScoped<StockRepo>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

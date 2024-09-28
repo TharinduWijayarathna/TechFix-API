@@ -1,13 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
-namespace CompanyAPI.DTO
+
+namespace TechFixAPI.Model
 {
-    public class CreateProdcutDTO
+    public class Stock
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public int Stock { get; set; } = 0;
+        public int Quantity { get; set; }=0;
         public string? Description { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CompanyAPI.Model
+namespace TechFixAPI.Model
 {
-    public class Product
+    public class Inventory
     {
         [Key]
         public int Id { get; set; }
@@ -10,7 +10,7 @@ namespace CompanyAPI.Model
         public string? Name { get; set; }
         [Required]
         public decimal Price { get; set; }
-        public int Stock { get; set; }=0;
+        public int Stock { get; set; } = 0;
         public string? Description { get; set; }
     }
 }
