@@ -55,6 +55,21 @@ namespace TechFixAPI.Controllers
             }
         }
 
+        [HttpGet("quote/{id}")]
+        public ActionResult<IEnumerable<ReadQuoteRequestItemDTO>> GetQuoteRequestItemsByQuoteRequestID(int id)
+        {
+            try
+            {
+                var QuoteRequestItems = repo.GetQuoteRequestItemsByQuoteRequestID(id);
+                return Ok(mapper.Map<IEnumerable<ReadQuoteRequestItemDTO>>(QuoteRequestItems));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{id}")]
         public ActionResult UpdateQuoteRequestItem
             (CreateQuoteRequestItemDTO create, int id)

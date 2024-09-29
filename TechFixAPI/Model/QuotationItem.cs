@@ -6,6 +6,9 @@ namespace TechFixAPI.Model
     {
         [Key]
         public int Id { get; set; }
+
+        public int QuotationId { get; set; }
+
         [Required]
         public string? Name { get; set; }
         [Required]

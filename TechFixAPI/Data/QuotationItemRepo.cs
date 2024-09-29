@@ -91,5 +91,17 @@ namespace TechFixAPI.Data
                 throw ex;
             }
         }
+
+        public IEnumerable<QuotationItem> GetQuotationItemsByQuotationID(int id)
+        {
+            try
+            {
+                return _dbContext.QuotationItems.Where(quotation_item => quotation_item.QuotationId == id).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
