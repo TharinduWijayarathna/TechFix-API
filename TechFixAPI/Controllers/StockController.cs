@@ -36,6 +36,24 @@ namespace CompanyAPI.Controllers
             }
             
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<ReadStockDTO> GetStockByID(int id)
+        {
+            try
+            {
+                var Stock = repo.GetStockByID(id);
+                if (Stock != null)
+                    return Ok(mapper.Map<ReadStockDTO>(Stock));
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{id}")]
         public ActionResult UpdateStock
             (CreateStockDTO create,int id)
@@ -89,5 +107,7 @@ namespace CompanyAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+       
     }
 }

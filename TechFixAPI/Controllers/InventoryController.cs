@@ -36,6 +36,24 @@ namespace TechFixAPI.Controllers
             }
 
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<ReadInventoryDTO> GetInventoryByID(int id)
+        {
+            try
+            {
+                var inventory = repo.GetInventoryByID(id);
+                if (inventory != null)
+                    return Ok(mapper.Map<ReadInventoryDTO>(inventory));
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{id}")]
         public ActionResult UpdateInventory
             (CreateInventoryDTO create, int id)
@@ -89,5 +107,7 @@ namespace TechFixAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+     
     }
 }

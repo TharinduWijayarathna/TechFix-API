@@ -36,6 +36,24 @@ namespace TechFixAPI.Controllers
             }
 
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<ReadQuoteRequestDTO> GetQuoteRequestByID(int id)
+        {
+            try
+            {
+                var QuoteRequest = repo.GetQuoteRequestByID(id);
+                if (QuoteRequest != null)
+                    return Ok(mapper.Map<ReadQuoteRequestDTO>(QuoteRequest));
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{id}")]
         public ActionResult UpdateQuoteRequest
             (CreateQuoteRequestDTO create, int id)
@@ -89,5 +107,7 @@ namespace TechFixAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+    
     }
 }
