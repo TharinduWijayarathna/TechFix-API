@@ -2,12 +2,11 @@
 
 namespace TechFixAPI.DTO
 {
-    public class CreateInventoryDTO
+    public class ReadQuoteRequestItemDTO
     {
-        [Required]
+        public int Id { get; set; }
         public string? Name { get; set; }
-        [Required]
-        public int Quantity { get; set; } = 0;
+        public int Quantity { get; set; }
         public string? Description { get; set; }
     }
 }

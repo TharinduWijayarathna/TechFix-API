@@ -13,13 +13,14 @@ namespace TechFixAPI.Data
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<QuoteRequest> QuoteRequests { get; set; }
         public DbSet<Quotation> Quotations { get; set; }
+        public DbSet<QuoteRequestItem> QuoteRequestItems { get; set; }
+        public DbSet<QuotationItem> QuotationItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Stock>().Property(p=>p.Price).
                 HasColumnType("decimal(18,2)");
-
-            modelBuilder.Entity<Inventory>().Property(p => p.Price).
+            modelBuilder.Entity<QuotationItem>().Property(p => p.Price).
                 HasColumnType("decimal(18,2)");
         }
         protected override void OnConfiguring

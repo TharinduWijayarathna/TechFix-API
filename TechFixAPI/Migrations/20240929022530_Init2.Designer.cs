@@ -12,8 +12,8 @@ using TechFixAPI.Data;
 namespace TechFixAPI.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240929020024_Init")]
-    partial class Init
+    [Migration("20240929022530_Init2")]
+    partial class Init2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,10 +40,7 @@ namespace TechFixAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Stock")
+                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -71,6 +68,32 @@ namespace TechFixAPI.Migrations
                     b.ToTable("Quotations");
                 });
 
+            modelBuilder.Entity("TechFixAPI.Model.QuotationItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuotationItems");
+                });
+
             modelBuilder.Entity("TechFixAPI.Model.QuoteRequest", b =>
                 {
                     b.Property<int>("Id")
@@ -89,6 +112,29 @@ namespace TechFixAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuoteRequests");
+                });
+
+            modelBuilder.Entity("TechFixAPI.Model.QuoteRequestItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuoteRequestItems");
                 });
 
             modelBuilder.Entity("TechFixAPI.Model.Stock", b =>
