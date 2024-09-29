@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TechFixAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class api_migrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,6 +27,23 @@ namespace TechFixAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QuotationItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuotationId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuotationItems", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Quotations",
                 columns: table => new
                 {
@@ -38,6 +55,22 @@ namespace TechFixAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Quotations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QuoteRequestItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuoteRequestId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuoteRequestItems", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -78,7 +111,13 @@ namespace TechFixAPI.Migrations
                 name: "Inventories");
 
             migrationBuilder.DropTable(
+                name: "QuotationItems");
+
+            migrationBuilder.DropTable(
                 name: "Quotations");
+
+            migrationBuilder.DropTable(
+                name: "QuoteRequestItems");
 
             migrationBuilder.DropTable(
                 name: "QuoteRequests");
