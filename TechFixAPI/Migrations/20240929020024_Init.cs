@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace TechFixAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,6 +25,34 @@ namespace TechFixAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Inventories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Quotations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Quotations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QuoteRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuoteRequests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,6 +77,12 @@ namespace TechFixAPI.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Inventories");
+
+            migrationBuilder.DropTable(
+                name: "Quotations");
+
+            migrationBuilder.DropTable(
+                name: "QuoteRequests");
 
             migrationBuilder.DropTable(
                 name: "Stocks");

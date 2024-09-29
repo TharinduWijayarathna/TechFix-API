@@ -11,6 +11,8 @@ namespace TechFixAPI.Data
 
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<QuoteRequest> QuoteRequests { get; set; }
+        public DbSet<Quotation> Quotations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

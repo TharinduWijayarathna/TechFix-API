@@ -12,6 +12,9 @@ builder.Services.AddDbContext<AppDBContext>
 builder.Services.AddControllers();
 builder.Services.AddScoped<StockRepo>();
 builder.Services.AddScoped<InventoryRepo>();
+builder.Services.AddScoped<QuoteRequestRepo>();
+builder.Services.AddScoped<QuotationRepo>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TechFixAPI.Data;
+using TechFixAPI.DTO;
+using TechFixAPI.Model;
 
 namespace TechFixAPI.Controllers
 {
@@ -7,5 +11,83 @@ namespace TechFixAPI.Controllers
     [ApiController]
     public class QuoteRequestController : ControllerBase
     {
+         private readonly QuoteRequestRepo repo;
+        private readonly IMapper mapper;
+
+        public QuoteRequestController(QuoteRequestRepo _repo, IMapper _mapper)
+        {
+            repo = _repo;
+            mapper = _mapper;
+        }
+        [HttpPost]
+        public ActionResult CreateQuoteRequest(CreateQuoteRequestDTO create)
+        {
+            try
+            {
+                var model = mapper.Map<QuoteRequest>(create);
+                if (repo.CreateQuoteRequest(model))
+                    return Ok();
+                else
+                    return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+        [HttpPut("{id}")]
+        public ActionResult UpdateQuoteRequest
+            (CreateQuoteRequestDTO create, int id)
+        {
+            try
+            {
+                var model = mapper.Map<QuoteRequest>(create);
+                model.Id = id;
+                if (repo.UpdateQuoteRequest(model))
+                    return Ok();
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+        [HttpDelete("{id}")]
+        public ActionResult DeleteQuoteRequest(int id)
+        {
+            try
+            {
+                var model = repo.GetQuoteRequestByID(id);
+                if (model != null)
+                {
+                    repo.DeleteQuoteRequest(model);
+                    return Ok();
+                }
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+        [HttpGet]
+        public ActionResult<IEnumerable<ReadQuoteRequestDTO>> GetQuoteRequests()
+        {
+            try
+            {
+                var Inventories = repo.GetQuoteRequests();
+                return Ok(mapper.Map<IEnumerable<ReadQuoteRequestDTO>>(Inventories));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
