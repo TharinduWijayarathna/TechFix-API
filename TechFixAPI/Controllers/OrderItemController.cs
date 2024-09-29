@@ -37,6 +37,22 @@ namespace TechFixAPI.Controllers
 
         }
 
+        //get order items by order id
+        [HttpGet("order/{id}")]
+        public ActionResult<IEnumerable<ReadOrderItemDTO>> GetOrderItemsByOrderID(int id)
+        {
+            try
+            {
+                var OrderItems = repo.GetOrderItemsByOrderID(id);
+                return Ok(mapper.Map<IEnumerable<ReadOrderItemDTO>>(OrderItems));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         public ActionResult<ReadOrderItemDTO> GetOrderItemByID(int id)
         {

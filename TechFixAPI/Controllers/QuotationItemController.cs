@@ -37,6 +37,21 @@ namespace TechFixAPI.Controllers
 
         }
 
+        [HttpGet("quotation/{id}")]
+        public ActionResult<IEnumerable<ReadQuotationItemDTO>> GetQuotationItemsByQuotationID(int id)
+        {
+            try
+            {
+                var QuotationItems = repo.GetQuotationItemsByQuotationID(id);
+                return Ok(mapper.Map<IEnumerable<ReadQuotationItemDTO>>(QuotationItems));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         public ActionResult<ReadQuotationItemDTO> GetQuotationItemByID(int id)
         {
@@ -54,20 +69,6 @@ namespace TechFixAPI.Controllers
             }
         }
 
-        [HttpGet("quotation/{id}")]
-        public ActionResult<IEnumerable<ReadQuotationItemDTO>> GetQuotationItemsByQuotationID(int id)
-        {
-            try
-            {
-                var QuotationItems = repo.GetQuotationItemsByQuotationID(id);
-                return Ok(mapper.Map<IEnumerable<ReadQuotationItemDTO>>(QuotationItems));
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
-        }
 
         [HttpPut("{id}")]
         public ActionResult UpdateQuotationItem

@@ -91,5 +91,17 @@ namespace TechFixAPI.Data
                 throw ex;
             }
         }
+
+        public IEnumerable<OrderItem> GetOrderItemsByOrderID(int id)
+        {
+            try
+            {
+                return _dbContext.OrderItems.Where(order_item => order_item.OrderId == id).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
