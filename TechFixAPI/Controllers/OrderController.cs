@@ -9,23 +9,23 @@ namespace TechFixAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class QuoteRequestController : ControllerBase
+    public class OrderController : ControllerBase
     {
-        private readonly QuoteRequestRepo repo;
+        private readonly OrderRepo repo;
         private readonly IMapper mapper;
 
-        public QuoteRequestController(QuoteRequestRepo _repo, IMapper _mapper)
+        public OrderController(OrderRepo _repo, IMapper _mapper)
         {
             repo = _repo;
             mapper = _mapper;
         }
         [HttpPost]
-        public ActionResult CreateQuoteRequest(CreateQuoteRequestDTO create)
+        public ActionResult CreateOrder(CreateOrderDTO create)
         {
             try
             {
-                var model = mapper.Map<QuoteRequest>(create);
-                if (repo.CreateQuoteRequest(model))
+                var model = mapper.Map<Order>(create);
+                if (repo.CreateOrder(model))
                     return Ok();
                 else
                     return BadRequest();
@@ -38,13 +38,13 @@ namespace TechFixAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ReadQuoteRequestDTO> GetQuoteRequestByID(int id)
+        public ActionResult<ReadOrderDTO> GetOrderByID(int id)
         {
             try
             {
-                var QuoteRequest = repo.GetQuoteRequestByID(id);
-                if (QuoteRequest != null)
-                    return Ok(mapper.Map<ReadQuoteRequestDTO>(QuoteRequest));
+                var Order = repo.GetOrderByID(id);
+                if (Order != null)
+                    return Ok(mapper.Map<ReadOrderDTO>(Order));
                 else
                     return NotFound();
             }
@@ -55,14 +55,14 @@ namespace TechFixAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateQuoteRequest
-            (CreateQuoteRequestDTO create, int id)
+        public ActionResult UpdateOrder
+            (CreateOrderDTO create, int id)
         {
             try
             {
-                var model = mapper.Map<QuoteRequest>(create);
+                var model = mapper.Map<Order>(create);
                 model.Id = id;
-                if (repo.UpdateQuoteRequest(model))
+                if (repo.UpdateOrder(model))
                     return Ok();
                 else
                     return NotFound();
@@ -74,14 +74,14 @@ namespace TechFixAPI.Controllers
 
         }
         [HttpDelete("{id}")]
-        public ActionResult DeleteQuoteRequest(int id)
+        public ActionResult DeleteOrder(int id)
         {
             try
             {
-                var model = repo.GetQuoteRequestByID(id);
+                var model = repo.GetOrderByID(id);
                 if (model != null)
                 {
-                    repo.DeleteQuoteRequest(model);
+                    repo.DeleteOrder(model);
                     return Ok();
                 }
                 else
@@ -94,12 +94,12 @@ namespace TechFixAPI.Controllers
 
         }
         [HttpGet]
-        public ActionResult<IEnumerable<ReadQuoteRequestDTO>> GetQuoteRequests()
+        public ActionResult<IEnumerable<ReadOrderDTO>> GetOrders()
         {
             try
             {
-                var Inventories = repo.GetQuoteRequests();
-                return Ok(mapper.Map<IEnumerable<ReadQuoteRequestDTO>>(Inventories));
+                var Inventories = repo.GetOrders();
+                return Ok(mapper.Map<IEnumerable<ReadOrderDTO>>(Inventories));
             }
             catch (Exception ex)
             {
@@ -107,7 +107,5 @@ namespace TechFixAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-    
     }
 }

@@ -16,6 +16,8 @@ builder.Services.AddScoped<QuoteRequestRepo>();
 builder.Services.AddScoped<QuotationRepo>();
 builder.Services.AddScoped<QuoteRequestItemRepo>();
 builder.Services.AddScoped<QuotationItemRepo>();
+builder.Services.AddScoped<OrderRepo>();
+builder.Services.AddScoped<OrderItemRepo>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

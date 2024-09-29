@@ -15,6 +15,8 @@ namespace TechFixAPI.Data
         public DbSet<Quotation> Quotations { get; set; }
         public DbSet<QuoteRequestItem> QuoteRequestItems { get; set; }
         public DbSet<QuotationItem> QuotationItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
