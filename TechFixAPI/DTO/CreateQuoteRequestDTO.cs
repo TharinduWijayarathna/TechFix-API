@@ -9,5 +9,7 @@ namespace TechFixAPI.DTO
 
         [Required]
         public DateTime Date { get; set; }
+        [Required]
+        public int SupplierId { get; set; }
     }
 }

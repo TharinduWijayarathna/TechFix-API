@@ -54,6 +54,24 @@ namespace TechFixAPI.Controllers
             }
         }
 
+        //get orders by supplier id
+        [HttpGet("supplier/{id}")]
+        public ActionResult<IEnumerable<ReadOrderDTO>> GetOrdersBySupplierID(int id)
+        {
+            try
+            {
+                var Orders = repo.GetOrdersBySupplierID(id);
+                if (Orders != null)
+                    return Ok(mapper.Map<IEnumerable<ReadOrderDTO>>(Orders));
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{id}")]
         public ActionResult UpdateOrder
             (CreateOrderDTO create, int id)

@@ -91,5 +91,17 @@ namespace TechFixAPI.Data
                 throw ex;
             }
         }
+
+        public IEnumerable<Order> GetOrdersBySupplierID(int id)
+        {
+            try
+            {
+                return _dbContext.Orders.Where(order => order.SupplierId == id).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
