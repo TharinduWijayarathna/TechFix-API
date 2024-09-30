@@ -10,5 +10,7 @@ namespace TechFixAPI.Model
         public string? Name { get; set; }
         [Required]
         public DateTime Date { get; set; }
+        [Required]
+        public int SupplierId { get; set; }
     }
 }

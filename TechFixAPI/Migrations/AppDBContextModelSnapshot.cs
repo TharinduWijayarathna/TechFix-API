@@ -60,6 +60,9 @@ namespace TechFixAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
@@ -154,6 +157,9 @@ namespace TechFixAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
