@@ -55,6 +55,21 @@ namespace TechFixAPI.Controllers
             }
         }
 
+        [HttpGet("supplier/{id}")]
+        public ActionResult<IEnumerable<ReadQuotationDTO>> GetQuotationsBySupplierID(int id)
+        {
+            try
+            {
+                var Quotations = repo.GetQuotationsBySupplierID(id);
+                return Ok(mapper.Map<IEnumerable<ReadQuotationDTO>>(Quotations));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut("{id}")]
         public ActionResult UpdateQuotation
             (CreateQuotationDTO create, int id)

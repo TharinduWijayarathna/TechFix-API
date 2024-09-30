@@ -12,7 +12,7 @@ using TechFixAPI.Data;
 namespace TechFixAPI.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240930172607_api_migrations")]
+    [Migration("20240930181242_api_migrations")]
     partial class api_migrations
     {
         /// <inheritdoc />
@@ -111,6 +111,9 @@ namespace TechFixAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
