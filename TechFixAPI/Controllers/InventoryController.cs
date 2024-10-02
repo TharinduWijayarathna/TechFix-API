@@ -108,6 +108,21 @@ namespace TechFixAPI.Controllers
             }
         }
 
-     
+        [HttpGet("supplier/{id}")]
+        public ActionResult<IEnumerable<ReadInventoryDTO>> GetInventoriesBySupplier(int id)
+        {
+            try
+            {
+                var Inventories = repo.GetInventoriesBySupplier(id);
+                return Ok(mapper.Map<IEnumerable<ReadInventoryDTO>>(Inventories));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }

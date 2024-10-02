@@ -1,4 +1,5 @@
-﻿using TechFixAPI.Model;
+﻿using Microsoft.AspNetCore.Mvc;
+using TechFixAPI.Model;
 
 namespace TechFixAPI.Data
 {
@@ -85,6 +86,18 @@ namespace TechFixAPI.Data
             try
             {
                 return _dbContext.Inventories.FirstOrDefault(inventory => inventory.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<Inventory> GetInventoriesBySupplier(int id)
+        {
+            try
+            {
+                return _dbContext.Inventories.Where(inventory => inventory.SupplierId == id).ToList();
             }
             catch (Exception ex)
             {

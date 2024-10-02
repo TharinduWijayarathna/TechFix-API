@@ -12,8 +12,8 @@ using TechFixAPI.Data;
 namespace TechFixAPI.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240930181242_api_migrations")]
-    partial class api_migrations
+    [Migration("20241002143513_TechfixAPIMigrationsInit")]
+    partial class TechfixAPIMigrationsInit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,9 @@ namespace TechFixAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SupplierId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

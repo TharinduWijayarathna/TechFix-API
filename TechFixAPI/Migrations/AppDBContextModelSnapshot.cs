@@ -40,6 +40,9 @@ namespace TechFixAPI.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Inventories");
